@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Inter', sans-serif;
+    color: aqua;
+    background-image: linear-gradient(to top, rgb(1, 1, 44), rgb(2, 2, 94));
+}
+
+body, body * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h4, label {
+    text-transform: uppercase;
+    font-weight: 200;
+}
+
+h4 {
+    margin: 0 0 10px;  
+}
+
+#countdown {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.timer {
+    height: max-content;
+    max-width: 130px;
+    width: 20%;
+    position: relative;
+}
+
+.dotParent {
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    transform-origin: 0 0;
+    opacity: .3;
+}
+
+.dotParent.active {
+    opacity: 1;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 2.5px;
+    background-color: aqua;
+}
+
+
+.timer span {
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.timer label {
+    font-size: 1rem;
+    position: absolute;
+    bottom: -2rem;
+}
+
+#modal {
+    display: none;
+    width: 400px;
+    max-width: 90%;
+    height: 200px;
+    position: absolute;
+    background-color: midnightblue;
+    box-shadow: 1px 1px 5px navy;
+    border-radius: 1rem;
+    z-index: 1;
+}
+
+#modal span {
+    display: none;
+    font-size: 12px;
+    margin-top: 5px;
+    color: red;
+}
+
+input {
+    flex-direction: row;
+    background-color: transparent;
+    color: #F5F5F5;
+    border: none;
+}
+
+::-webkit-calendar-picker-indicator {
+    margin: 0;
+    padding: 0;
+    color: transparent;
+    opacity: 0;
+    cursor: pointer;
+}
+
+input:after {
+    content: '📅';
+    margin-left: -15px;
+    cursor: pointer;
+}
+
+#background {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .3);
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background-color: rgba(255, 255, 255, .2);
+    color: #F5F5F5;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    bottom: 10px;
+    position: absolute;
+    right: 20px;
+}
+
+#since {
+    position: absolute;
+    bottom: 5px;
+    font-size: .6rem;
+    cursor: pointer;
+}
+
+@media (orientation: portrait) {
+    #countdown {
+      flex-direction: column;
+    }
+  }

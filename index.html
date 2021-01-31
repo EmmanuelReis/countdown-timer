@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Countdown Timer</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="./styles.css">
+        <script src="./script.js"></script>
+        <script src="./countdown.js"></script>
+    </head>
+    <body>
+        <h4>Time Remaining</h4>
+
+        <div id="countdown"></div>
+
+        <div id="modal">
+            <h5>Choose the date and time to start the timer</h5>
+            <input id="datetime" type="datetime-local">
+            <span id="error">Invalid Date</span>
+            <button id="start">Start</button>
+        </div>
+
+        <div id="background"></div>
+
+        <span id="since"></span>
+    </body>
+</html>
