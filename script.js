@@ -1,7 +1,7 @@
 window.onload = () => {
-    let initialDate = 1612122300000//new Date(localStorage.getItem('initial')).getTime();
-    let finalDate = 1612136760000;//new Date(localStorage.getItem('final')).getTime();
-    let currentDate = 1612129490000//new Date().getTime();
+    let initialDate = new Date(localStorage.getItem('initial')).getTime();
+    let finalDate = new Date(localStorage.getItem('final')).getTime();
+    let currentDate = new Date().getTime();
     let diff = finalDate - initialDate;
 
     let calcRemaining = {
@@ -25,30 +25,41 @@ window.onload = () => {
     
     Object.keys(calcRemaining).reduce((currentObject, newObject) => {
         if(parseInt(diff / calcRemaining[newObject].to) > 0) {
-            let countdownObj = new CountdownTimer(newObject, parseInt(Math.min(diff / calcRemaining[newObject].to, calcRemaining[newObject].mod - 1)));
-            let countdown = countdownObj.init(parseInt((finalDate - currentDate) / calcRemaining[newObject].to) % calcRemaining[newObject].mod);
+            let initialDiff = parseInt(Math.min(diff / calcRemaining[newObject].to, calcRemaining[newObject].mod - 1));
+            let currentDiff = parseInt((finalDate - currentDate) / calcRemaining[newObject].to) % calcRemaining[newObject].mod;
             
-            if(newObject == 'seconds') {
-                interval = setInterval(countdown, 1000);
-            }
+            let countdownObj = new CountdownTimer(newObject, initialDiff);
+            let countdown = countdownObj.init(currentDiff);
 
+            let finish = () => countdownObj.setFinish(true);
+
+            if(newObject == 'seconds') {
+                let interval = setInterval(countdown, 1000);
+                
+                finish = () => clearInterval(interval);
+            }
+            
             if(currentObject.countdownObj) {
                 countdownObj.setEmit(() => {
                     let value = currentObject.countdown();
-
+                    
                     if(!value && currentObject.countdownObj.getFinish()) {
-                        countdownObj.setEmit(() => {}).setFinish(true);
+                        countdownObj.setEmit(() => {});
+                        finish();
                     }
                     else {
                         countdownObj.reset();
                     }
                 })
             }
+            else if(!currentDiff) {
+                countdownObj.setFinish(true);
+            }
+            else {
+                countdownObj.setEmit(() => countdownObj.setFinish(true));
+            }
 
             return { countdownObj, countdown };
-        }
-        else if(currentObject.countdownObj) {
-            currentObject.countdownObj.setEmit(() => {}).setFinish(true);
         }
 
         return {};
