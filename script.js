@@ -1,9 +1,9 @@
 window.onload = () => {
-    let initialDate = new Date(localStorage.getItem('initial')).getTime();
-    let finalDate = new Date(localStorage.getItem('final')).getTime();
+    let initialDate = localStorage.getItem('lastAccess') ?? new Date().getTime();
+    let finalDate = new Date((new Date).getFullYear() + 1, 0, 1).getTime();
+
     let currentDate = new Date().getTime();
     let diff = finalDate - initialDate;
-
     let calcRemaining = {
         days: {
             to: 8.64e+7,
@@ -64,4 +64,6 @@ window.onload = () => {
 
         return {};
     }, {});
+    
+    localStorage.setItem('lastAccess', new Date().getTime());
 }

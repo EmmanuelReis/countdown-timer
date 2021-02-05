@@ -69,12 +69,6 @@ class CountdownTimer {
         return countdown.value;
     }
 
-    setReset(fn) {
-        this.reset = fn;
-
-        return this;
-    }
-
     setEmit(fn) {
         this.emit = fn;
 
@@ -106,7 +100,6 @@ class CountdownTimer {
             countdown.value = this.#value;
         };
 
-        // countdown.reset = () => this.reset();
         countdown.OnZero = () => this.emit();
 
         return this.update({ element, countdown });

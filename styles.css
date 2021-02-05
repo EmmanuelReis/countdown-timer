@@ -3,8 +3,12 @@ body {
     height: 100vh;
     width: 100vw;
     font-family: 'Inter', sans-serif;
-    color: aqua;
-    background-image: linear-gradient(to top, rgb(1, 1, 44), rgb(2, 2, 94));
+    color: #F5F5F5;
+    background-image: url('https://zdnet4.cbsistatic.com/hub/i/r/2020/12/01/ac5355c2-83e3-4364-80bd-86c11bb98820/resize/1200x900/dda581e217881d9f56a44538e9c33933/new-year-fireworks.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    backdrop-filter: blur(2px);
 }
 
 body, body * {
@@ -54,7 +58,7 @@ h4 {
     width: 5px;
     height: 5px;
     border-radius: 2.5px;
-    background-color: aqua;
+    background-color: #F5F5F5;
 }
 
 
